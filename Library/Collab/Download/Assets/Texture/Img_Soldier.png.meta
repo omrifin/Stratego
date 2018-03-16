@@ -1,0 +1,1196 @@
+fileFormatVersion: 2
+guid: 0dacbae9716030f45a804d83eda1c0d8
+timeCreated: 1503495541
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Img_Soldier_0
+    21300002: Img_Soldier_1
+    21300004: Img_Soldier_2
+    21300006: Img_Soldier_3
+    21300008: Img_Soldier_4
+    21300010: Img_Soldier_5
+    21300012: Img_Soldier_6
+    21300014: Img_Soldier_7
+    21300016: Img_Soldier_8
+    21300018: Img_Soldier_9
+    21300020: Img_Soldier_10
+    21300022: Img_Soldier_11
+    21300024: Img_Soldier_12
+    21300026: Img_Soldier_13
+    21300028: Img_Soldier_14
+    21300030: Img_Soldier_15
+    21300032: Img_Soldier_16
+    21300034: Img_Soldier_17
+    21300036: Img_Soldier_18
+    21300038: Img_Soldier_19
+    21300040: Img_Soldier_20
+    21300042: Img_Soldier_21
+    21300044: Img_Soldier_22
+    21300046: Img_Soldier_23
+    21300048: Img_Soldier_24
+    21300050: Img_Soldier_25
+    21300052: Img_Soldier_26
+    21300054: Img_Soldier_27
+    21300056: Img_Soldier_28
+    21300058: Img_Soldier_29
+    21300060: Img_Soldier_30
+    21300062: Img_Soldier_31
+    21300064: Img_Soldier_32
+    21300066: Img_Soldier_33
+    21300068: Img_Soldier_34
+    21300070: Img_Soldier_35
+    21300072: Img_Soldier_36
+    21300074: Img_Soldier_37
+    21300076: Img_Soldier_38
+    21300078: Img_Soldier_39
+    21300080: Img_Soldier_40
+    21300082: Img_Soldier_41
+    21300084: Img_Soldier_42
+    21300086: Img_Soldier_43
+    21300088: Img_Soldier_44
+    21300090: Img_Soldier_45
+    21300092: Img_Soldier_46
+    21300094: Img_Soldier_47
+    21300096: Img_Soldier_48
+    21300098: Img_Soldier_49
+    21300100: Img_Soldier_50
+    21300102: Img_Soldier_51
+    21300104: Img_Soldier_52
+    21300106: Img_Soldier_53
+    21300108: Img_Soldier_54
+    21300110: Img_Soldier_55
+    21300112: Img_Soldier_56
+    21300114: Img_Soldier_57
+    21300116: Img_Soldier_58
+    21300118: Img_Soldier_59
+    21300120: Img_Soldier_60
+    21300122: Img_Soldier_61
+    21300124: Img_Soldier_62
+    21300126: Img_Soldier_63
+    21300128: Img_Soldier_64
+    21300130: Img_Soldier_65
+    21300132: Img_Soldier_66
+    21300134: Img_Soldier_67
+    21300136: Img_Soldier_68
+    21300138: Img_Soldier_69
+    21300140: Img_Soldier_70
+    21300142: Img_Soldier_71
+    21300144: Img_Soldier_72
+    21300146: Img_Soldier_73
+    21300148: Img_Soldier_74
+    21300150: Img_Soldier_75
+    21300152: Img_Soldier_76
+    21300154: Img_Soldier_77
+    21300156: Img_Soldier_78
+    21300158: Img_Soldier_79
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1270
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Img_Soldier_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 291
+        width: 52
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_1
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 291
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_2
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 291
+        width: 52
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 291
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_4
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 291
+        width: 52
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_5
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 291
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_6
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 291
+        width: 52
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_7
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 291
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_8
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 291
+        width: 52
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_9
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 291
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_10
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 291
+        width: 52
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_11
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 291
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_12
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 291
+        width: 52
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_13
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 291
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_14
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 291
+        width: 52
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_15
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 291
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_16
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 291
+        width: 52
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_17
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 291
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_18
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 291
+        width: 52
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_19
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 291
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_20
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 195
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_21
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 195
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_22
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 195
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_23
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 195
+        width: 54
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_24
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 195
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_25
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 195
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_26
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 195
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_27
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 195
+        width: 54
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_28
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 195
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_29
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 195
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_30
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 195
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_31
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 195
+        width: 54
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_32
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 195
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_33
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 195
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_34
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 195
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_35
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 195
+        width: 54
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_36
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 195
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_37
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 195
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_38
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 195
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_39
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 195
+        width: 53
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_40
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 99
+        width: 49
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_41
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 99
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_42
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 99
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_43
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 99
+        width: 54
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_44
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 99
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_45
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 99
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_46
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 99
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_47
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 99
+        width: 54
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_48
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 99
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_49
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 99
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_50
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 99
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_51
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 99
+        width: 54
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_52
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 99
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_53
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 99
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_54
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 99
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_55
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 99
+        width: 54
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_56
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 99
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_57
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 99
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_58
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 99
+        width: 50
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_59
+      rect:
+        serializedVersion: 2
+        x: 1193
+        y: 99
+        width: 54
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_60
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 4
+        width: 48
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_61
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 4
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_62
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 4
+        width: 48
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_63
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 4
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_64
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 4
+        width: 48
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_65
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 4
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_66
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 4
+        width: 48
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_67
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 4
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_68
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 4
+        width: 48
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_69
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 4
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_70
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 4
+        width: 48
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_71
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 4
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_72
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 4
+        width: 48
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_73
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 4
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_74
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 4
+        width: 48
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_75
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 4
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_76
+      rect:
+        serializedVersion: 2
+        x: 1009
+        y: 4
+        width: 48
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_77
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 4
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_78
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 4
+        width: 48
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Img_Soldier_79
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 4
+        width: 48
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
