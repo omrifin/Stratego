@@ -35,7 +35,7 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
 
     SC_MultiPlayer_gameBoard currentSelectedPiece;
 
-    #region Single Tone
+    #region SingleTon
     public static SC_MultiPlayer_Logic instance;
     public bool isMyTurn;
 
