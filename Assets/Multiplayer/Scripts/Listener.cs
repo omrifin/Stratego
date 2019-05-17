@@ -53,7 +53,14 @@ namespace AssemblyCSharp
 		public delegate void MoveCompletedHandler(MoveEvent _Move);
 		public static event MoveCompletedHandler OnMoveCompleted;
 
-		int state = 0;
+        public delegate void OnUserLeftRoomHandler(RoomData eventObj, string username);
+        public static event OnUserLeftRoomHandler OnUserLeftRoom;
+
+        
+
+
+
+        int state = 0;
 		public void sendMsg(string msg)
 		{
 			if(state == 1)
@@ -284,13 +291,16 @@ namespace AssemblyCSharp
 		{
 			Debug.Log ("onRoomDestroyed");
 		}
-		
-		public void onUserLeftRoom (RoomData eventObj, string username)
-		{
-			Debug.Log ("onUserLeftRoom : " + username);
-		}
-		
-		public void onUserJoinedRoom (RoomData eventObj, string username)
+
+        public void onUserLeftRoom(RoomData eventObj, string username)
+        {
+            Debug.Log("onUserLeftRoom : " + username);
+            SC_MultiPlayer_Logic.Instance.LeaveRoom();
+
+        }
+
+
+        public void onUserJoinedRoom (RoomData eventObj, string username)
 		{
 			if (OnUserJoinRoom != null)
 				OnUserJoinRoom(eventObj, username);

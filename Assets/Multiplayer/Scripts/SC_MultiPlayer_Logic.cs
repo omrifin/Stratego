@@ -31,11 +31,19 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
     int enemyArrayCount = 40;
     SC_MultiPlayer_PieceLogic redWinnerPiece;
     bool roomMatch = false;
+    bool hasTransferedInfo = true;
+    bool boolGetEnemyData = false;
+    bool boolSendMyData = false;
+    int onMoveCompletedCounter = 0;
+    string roomId;
+    public bool doneRestarting = true;
+
+
 
 
     SC_MultiPlayer_gameBoard currentSelectedPiece;
 
-    #region SingleTon
+    #region Single Tone
     public static SC_MultiPlayer_Logic instance;
     public bool isMyTurn;
 
@@ -88,7 +96,7 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
             || (Math.Abs(currentSelectedPiece.piece.currentTileRow - redPiece.currentTileRow) == 1) && (Math.Abs(currentSelectedPiece.piece.currentTileCol - redPiece.currentTileCol) == 0))
 
                 fight(tile);
-            SwitchTurn();
+            //SwitchTurn();
         }
     }
 
@@ -151,7 +159,8 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
 
     public void UserPressedPiece(SC_MultiPlayer_PieceLogic piece)
     {
-        if (currentTurn == SC_DefiendVariables.Turn.blueTurn)
+   
+        if (currentTurn == SC_DefiendVariables.Turn.blueTurn  || !doneRestarting)
         {
             SC_MultiPlayer_View.Instance.HideValidPlacements();
             ResetValidCoordinates();
@@ -169,6 +178,8 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
                 //if (piece.canMove == SC_DefiendVariables.Moveable.can)
                 if (piece.whoAmI == SC_DefiendVariables.whoAmI.Blue)
                     MarkValidTilesAtRunning();
+                else if(piece.whoAmI == SC_DefiendVariables.whoAmI.Red)
+                    fight(gameBoard[piece.currentTileRow][piece.currentTileCol].tile.GetComponent<SC_MultiPlayer_TileLogic>());
             }
 
         }
@@ -219,28 +230,70 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
 
     public void OnMoveCompleted(MoveEvent _Move)
     {
-        Debug.Log("OnMoveCompleted " + _Move.getMoveData() + " " + _Move.getNextTurn() + " " + _Move.getSender());
-        if (_Move.getSender() !=SC_MultiPlayer_Globals.userName && _Move.getMoveData() != null)
+        print("onMoveComplete.count = " + onMoveCompletedCounter);
+
+        //Debug.Log("OnMoveCompleted " + _Move.getMoveData() + " " + _Move.getNextTurn() + " " + _Move.getSender());
+        if (_Move.getSender() != SC_MultiPlayer_Globals.userName && _Move.getMoveData() != null && SC_MultiPlayer_Globals.GamePhase == SC_MultiPlayer_Globals.GameSituation.setPieces && onMoveCompletedCounter > 3 && doneRestarting == false)
         {
-          
             Dictionary<string, object> _recievedData = MiniJSON.Json.Deserialize(_Move.getMoveData()) as Dictionary<string, object>;
             if (_recievedData != null)
             {
-                //int _index = int.Parse(_recievedData["Data"].ToString());
-                //  SubmitLogic(_index);
-                print("_recievedData= fromCol" + _recievedData["fromCol"] + " toCol= " + _recievedData["toCol"]);
+
+                int _toCol = 9 - Convert.ToInt32(_recievedData["toCol"]);
+                int _toRow = 9 - Convert.ToInt32(_recievedData["toRow"]);
+                //int _fromCol = 9 - Convert.ToInt32(_recievedData["fromCol"]);
+                //int _fromRow = 9 - Convert.ToInt32(_recievedData["fromRow"]);
+
+                SC_MultiPlayer_Globals.SoldierRank strength = (SC_MultiPlayer_Globals.SoldierRank)Enum.Parse(typeof(SC_MultiPlayer_Globals.SoldierRank), _recievedData["strength"].ToString());
+                SC_MultiPlayer_View.Instance.movePieceToNewLocation(SC_MultiPlayer_Globals.Instance.unityObjects["Enemy (" + _recievedData["name"] + ")"].GetComponent<SC_MultiPlayer_PieceLogic>(), gameBoard[_toRow][_toCol].tile.GetComponent<SC_MultiPlayer_TileLogic>());
+                print("inside the first if!!!!!");
+
+
+            }
+        }
+        else if (hasTransferedInfo && _Move.getSender() != SC_MultiPlayer_Globals.userName)
+        {
+            print("(hasTransferedInfo && _Move.getSender() != SC_MultiPlayer_Globals.userName)");
+            hasTransferedInfo = false;
+            SetEnemyPieces(_Move);
+            InitializeEnemyPieces();
+        }
+        
+       else if (_Move.getSender() !=SC_MultiPlayer_Globals.userName && _Move.getMoveData() != null && onMoveCompletedCounter >2 && SC_MultiPlayer_Globals.GamePhase == SC_MultiPlayer_Globals.GameSituation.Running)
+        {
+            print("before the dictonery1");
+            Dictionary<string, object> _recievedData = MiniJSON.Json.Deserialize(_Move.getMoveData()) as Dictionary<string, object>;
+            if (_recievedData != null)
+            {
+                //print("_recievedData= fromCol" + _recievedData["fromCol"] + " toCol= " + _recievedData["toCol"]);
                 ProccessMove(_recievedData);
             }
         }
 
-       // print("_Move.getNextTurn()" + _Move.getNextTurn() + "    +++     userName" + SC_MultiPlayer_Globals.userName);
-        //if (_Move.getNextTurn() == SC_MultiPlayer_Globals.userName)
-        //    currentTurn = SC_DefiendVariables.Turn.RedTurn;
-        //else currentTurn = SC_DefiendVariables.Turn.blueTurn;
 
         if (_Move.getNextTurn() == SC_MultiPlayer_Globals.userName)
             isMyTurn = true;
         else isMyTurn = false;
+
+        SwitchTurn();
+        onMoveCompletedCounter++;
+    }
+
+    private void SetEnemyPieces(MoveEvent _Move)
+    {
+        Dictionary<string, object> _recievedData = MiniJSON.Json.Deserialize(_Move.getMoveData()) as Dictionary<string, object>;
+        if (_recievedData != null)
+        {
+            for(int i=0;i<4;i++)
+                for(int j = 0; j < 10; j++)
+                {
+                    print("EnemyPlayer " + i + "-" + j + ": " + _recievedData[i + "-" + j]);
+                    gameBoard[9 - i][9 - j].piece.pieceStrengh =  (SC_MultiPlayer_Globals.SoldierRank)Enum.Parse(typeof(SC_MultiPlayer_Globals.SoldierRank), _recievedData[i + "-" + j].ToString());
+                }
+
+            //ProccessMove(_recievedData);
+            boolGetEnemyData = true;
+        }
     }
 
     private void ProccessMove(Dictionary<string, object> recievedData)
@@ -248,7 +301,7 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
         int _toCol, _fromCol, _toRow, _fromRow;
         //SC_MultiPlayer_Globals.SoldierRank strength = (SC_MultiPlayer_Globals.SoldierRank) recievedData["strength"];
         SC_MultiPlayer_Globals.SoldierRank strength = (SC_MultiPlayer_Globals.SoldierRank)Enum.Parse(typeof(SC_MultiPlayer_Globals.SoldierRank),recievedData["strength"].ToString());
-
+        print("soldier moved strength = " + strength);
 
 
         _fromCol = 9 - Convert.ToInt32(recievedData["fromCol"]);
@@ -258,10 +311,41 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
 
         print("fromRow= " + _fromRow+" fromCol= "+_fromCol + " toRow" + _toRow+ " toCol= "+_toCol);
         currentSelectedPiece.piece = gameBoard[_fromRow][_fromCol].piece;
+        currentSelectedPiece.piece.pieceStrengh = strength;
         EnemyTurn(_toRow, _toCol, _fromRow, _fromCol);
 
 
 
+    }
+
+    public void SendMoveAfterRestarting(SC_MultiPlayer_TileLogic tile)
+    {
+
+            print("SendMove");
+            Dictionary<string, object> _moveToSend = new Dictionary<string, object>();
+
+            point _to = new point();
+
+            _to.row = tile.Row;
+            _to.col = tile.Col;
+
+            SC_MultiPlayer_Globals.SoldierRank strength = currentSelectedPiece.piece.pieceStrengh;
+
+            _moveToSend.Add("toRow", _to.row);
+            _moveToSend.Add("toCol", _to.col);
+        //_moveToSend.Add("number", currentSelectedPiece.name);
+
+         _moveToSend.Add("strength", strength);
+        if (currentSelectedPiece.piece != null)
+        {
+            int result = Int32.Parse(System.Text.RegularExpressions.Regex.Match(currentSelectedPiece.piece.name, @"\d+").Value);
+            _moveToSend.Add("name", result);
+           
+        }
+
+        string _jsonToSend = MiniJSON.Json.Serialize(_moveToSend);
+        Debug.Log(_jsonToSend);
+        WarpClient.GetInstance().sendMove(_jsonToSend);
     }
 
     public void UserPressedTile(SC_MultiPlayer_TileLogic tile)
@@ -271,17 +355,20 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
         {
             if ((SC_MultiPlayer_Globals.GamePhase == SC_MultiPlayer_Globals.GameSituation.setPieces) && (tile.Row < 4))
             {
+                if (doneRestarting == false)
+                    SendMoveAfterRestarting(tile);
                 if (gameBoard[tile.Row][tile.Col].tileStatus == SC_DefiendVariables.TileStatus.Empty)
                     if (currentSelectedPiece.piece.currentTileRow != -1 && currentSelectedPiece.piece.currentTileCol != -1)
                         SC_MultiPlayer_Globals.instance.numOfDeployedBluePieces++;
                 MovePieceWhenEmpty(tile);
                 if (SC_MultiPlayer_Globals.instance.numOfDeployedBluePieces == 40)
                     SC_MultiPlayer_View.Instance.StartButton.SetActive(true);
+           
+                
             }
 
             else if (SC_MultiPlayer_Globals.GamePhase == SC_MultiPlayer_Globals.GameSituation.Running)
             {
-                SendMove(tile);
                 if (currentTurn == SC_DefiendVariables.Turn.blueTurn)
                 {
                     for (int i = 0; i < 4; i++)
@@ -292,14 +379,13 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
                             if ((validCoordinates[i].Row == tile.Row) && (validCoordinates[i].Col == tile.Col))
                             {
 
-                               
+                                SendMove(tile);
                                 //print("[Tile.row]= " + tile.Row + " [Tile.Col]= " + tile.Col);
                                 pieceHasBeenSelected = true;
                                 if (gameBoard[tile.Row][tile.Col].tileStatus == SC_DefiendVariables.TileStatus.Empty)
                                     MovePieceWhenEmpty(tile);
                                 else if (gameBoard[tile.Row][tile.Col].tileStatus == SC_DefiendVariables.TileStatus.RedOccupied)
                                 {
-
                                     fight(tile);
                                     ResetValidCoordinates();
                                 }
@@ -321,14 +407,17 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
         if (currentTurn == SC_DefiendVariables.Turn.RedTurn)
         {
             currentTurn = SC_DefiendVariables.Turn.blueTurn;
+            if (SC_MultiPlayer_View.Instance.WhosTurnSprite != null) 
+            SC_MultiPlayer_View.Instance.WhosTurnSprite.GetComponent<Image>().sprite = SC_MultiPlayer_View.Instance.BlueSoldierSprite.GetComponent<SpriteRenderer>().sprite;
             print("currentTurn = " + currentTurn);
         }
-        //else if(pieceHasBeenSelected == true)
         else
         {
             currentTurn = SC_DefiendVariables.Turn.RedTurn;
             print("currentTurn = " + currentTurn);
             pieceHasBeenSelected = false;
+            if (SC_MultiPlayer_View.Instance.WhosTurnSprite != null)
+                SC_MultiPlayer_View.Instance.WhosTurnSprite.GetComponent<Image>().sprite = SC_MultiPlayer_View.Instance.RedSoldierSprite.GetComponent<SpriteRenderer>().sprite;
 
         }
         ResetValidCoordinates();
@@ -421,11 +510,12 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
 
     public void fight(SC_MultiPlayer_TileLogic tile)
     {
+        SendMove(tile);
         SC_MultiPlayer_PieceLogic attack = currentSelectedPiece.piece;
         SC_MultiPlayer_PieceLogic defender = gameBoard[tile.Row][tile.Col].piece;
 
         print("currentAttacker= " + currentTurn + "[" + attack.currentTileRow + "][" + attack.currentTileCol + "].strengh = " + attack.pieceStrengh);
-        print("currentAttacker= " + currentTurn + "[" + defender.currentTileRow + "][" + defender.currentTileCol + "].strengh = " + defender.pieceStrengh);
+        print("currentDefender= " + currentTurn + "[" + defender.currentTileRow + "][" + defender.currentTileCol + "].strengh = " + defender.pieceStrengh);
         if ((attack.pieceStrengh == SC_MultiPlayer_Globals.SoldierRank.spy) && (defender.pieceStrengh == SC_MultiPlayer_Globals.SoldierRank.ten))
         {
             //spy captured your marshell
@@ -444,11 +534,14 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
         {
             print("GAMEOVER");
             SC_MultiPlayer_Globals.GamePhase = SC_MultiPlayer_Globals.GameSituation.Finished;
-            SC_MultiPlayer_View.Instance.EndGamePanel.SetActive(true);
-            if (defender.whoAmI == SC_DefiendVariables.whoAmI.Blue)
 
+            
+            if (defender.whoAmI == SC_DefiendVariables.whoAmI.Blue)
                 SC_MultiPlayer_View.Instance.EndGameText.GetComponent<Text>().text = "Winner: Red";    //Red won!
+            else
             SC_MultiPlayer_View.Instance.EndGameText.GetComponent<Text>().text = "Winner: Blue";  //blue won!
+
+            SC_MultiPlayer_View.Instance.EndPanelGame();//EndGamePanel.SetActive(true);
 
 
         }
@@ -476,10 +569,15 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
             {
                 KillPiece(attack, tile);
                 MovePieceWhenDefeatEnemy(defender, tile);
+                if (defender.whoAmI == SC_DefiendVariables.whoAmI.Blue)
+                    gameBoard[tile.Row][tile.Col].tileStatus = SC_DefiendVariables.TileStatus.BlueOccupied;
+                else
+                    gameBoard[tile.Row][tile.Col].tileStatus = SC_DefiendVariables.TileStatus.RedOccupied;
+
             }
         }
 
-        SwitchTurn();
+        //SwitchTurn();
         currentSelectedPiece.piece = null;
         SC_MultiPlayer_View.Instance.HideValidPlacements();
 
@@ -550,6 +648,8 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
         attack.currentTileRow = tile.Row;
         attack.currentTileCol = tile.Col;
         gameBoard[tile.Row][tile.Col].piece = attack;
+        if (attack.whoAmI == SC_DefiendVariables.whoAmI.Blue)
+            SC_MultiPlayer_View.Instance.movePieceToNewLocation(attack, tile);
 
 
         if (attack.whoAmI == SC_DefiendVariables.whoAmI.Red)
@@ -693,6 +793,8 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
         Listener.OnUserJoinRoom += OnUserJoinRoom;
         Listener.OnGameStarted += OnGameStarted;
         Listener.OnMoveCompleted += OnMoveCompleted;
+        Listener.OnUserLeftRoom += OnUserLeftRoom;
+        SC_MultiPlayer_Controller.RestartHandler += Restart;
 
 
     }
@@ -706,23 +808,33 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
         Listener.OnUserJoinRoom -= OnUserJoinRoom;
         Listener.OnGameStarted -= OnGameStarted;
         Listener.OnMoveCompleted -= OnMoveCompleted;
-
-
+        Listener.OnUserLeftRoom -= OnUserLeftRoom;
+        SC_MultiPlayer_Controller.RestartHandler -= Restart;
 
     }
+
     public void onRoomDestroyed(RoomData eventObj)
     {
         Debug.Log("onRoomDestroyed");
     }
 
-    public void onUserLeftRoom(RoomData eventObj, string username)
+    public void OnUserLeftRoom(RoomData eventObj, string username)
     {
         Debug.Log("onUserLeftRoom : " + username);
     }
 
 
+    public void PrintGameBoard()
+    {
+        for(int i=0;i<10;i++)
+            for(int j = 0; j < 10; j++)
+            {
+                if(gameBoard[i][j].piece != null)
+                print(i + "-" + j + "= " + gameBoard[i][j].piece.pieceStrengh);
+            }
+    }
 
-
+    
     public void initMultiplayer()
     {
         WarpClient.initialize(SC_MultiPlayer_Globals.apiKey, SC_MultiPlayer_Globals.secretApiKey);
@@ -775,6 +887,8 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
             {
                 Debug.Log("Getting Live Info on room: " + SC_MultiPlayer_Globals.rooms[SC_MultiPlayer_Globals.index]);
                 WarpClient.GetInstance().GetLiveRoomInfo(SC_MultiPlayer_Globals.rooms[SC_MultiPlayer_Globals.index]);
+                SC_MultiPlayer_View.Instance.CurrentTurnText.gameObject.SetActive(true);
+                SC_MultiPlayer_View.Instance.WhosTurnSprite.SetActive(true);
             }
             else
             {
@@ -786,14 +900,14 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
             }
             //this bool responsible to aware us if there is a room that Match the bet.
 
-            if (!roomMatch)
-            {
-                currentTurn = SC_DefiendVariables.Turn.blueTurn;
-                print("I start the game!");
-                isMyTurn = true;
-                Debug.Log("No rooms were availible, create a room");
-                WarpClient.GetInstance().CreateTurnRoom("Room Name", SC_MultiPlayer_Globals.userName, 2, SC_DefiendVariables.bet, 60);
-            }
+            //if (!roomMatch)
+            //{
+            //    currentTurn = SC_DefiendVariables.Turn.blueTurn;
+            //    print("I start the game!");
+            //    isMyTurn = true;
+            //    Debug.Log("No rooms were availible, create a room");
+            //    WarpClient.GetInstance().CreateTurnRoom("Room Name", SC_MultiPlayer_Globals.userName, 2, SC_DefiendVariables.bet, 60);
+            //}
         }
         else GameObject.Find("Btn_Play").GetComponent<Button>().interactable = true;
     }
@@ -802,7 +916,6 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
 
     public void OnCreateRoom(bool _IsSuccess, string _RoomId)
     {
-
         Debug.Log("OnCreateRoom " + _IsSuccess + " " + _RoomId);
         if (_IsSuccess)
         {
@@ -815,7 +928,11 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
         }
     }
 
-
+    public void LeaveRoom()
+    {
+        SC_MultiPlayer_View.Instance.LeaveRoom();
+        WarpClient.GetInstance().LeaveRoom(roomId);
+    }
 
     public void OnGetLiveRoomInfo(LiveRoomInfoEvent eventObj)
     {
@@ -823,7 +940,6 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
         Dictionary<string, object> _temp = eventObj.getProperties();
         print("bet = " + SC_DefiendVariables.bet);
         Debug.Log(_temp.Count + " " + _temp["bet"] + " " + SC_DefiendVariables.bet["bet"].ToString());
-
         if (eventObj.getResult() == 0 && eventObj.getJoinedUsers().Length == 1 &&
     _temp["bet"].ToString() == SC_DefiendVariables.bet["bet"].ToString())
         {
@@ -832,6 +948,14 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
             print("Enemy start the game!");
             WarpClient.GetInstance().JoinRoom(eventObj.getData().getId());
             WarpClient.GetInstance().SubscribeRoom(eventObj.getData().getId());
+        }
+        else
+        {
+            currentTurn = SC_DefiendVariables.Turn.blueTurn;
+            print("I start the game!");
+            isMyTurn = true;
+            Debug.Log("No rooms were availible, create a room");
+            WarpClient.GetInstance().CreateTurnRoom("Room Name", SC_MultiPlayer_Globals.userName, 2, SC_DefiendVariables.bet, 60);
         }
 
         if (_temp["bet"].ToString() == SC_DefiendVariables.bet["bet"].ToString()) roomMatch = true;
@@ -844,6 +968,8 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
         //SC_MenuView.Instance.SetInfoText("OnUserJoinRoom " + " " + _UserName);
         if (_UserName != eventObj.getRoomOwner())
         {
+            SC_MultiPlayer_View.Instance.WhosTurnSprite.SetActive(true);
+            SC_MultiPlayer_View.Instance.CurrentTurnText.gameObject.SetActive(false);
             WarpClient.GetInstance().startGame();
             print("startGame!");
         }
@@ -874,61 +1000,54 @@ public class SC_MultiPlayer_Logic : MonoBehaviour
 
     public void OnGameStarted(string _Sender, string _RoomId, string _NextTurn)
     {
+        roomId = _RoomId;
         Debug.Log("OnGameStarted!");// + _Sender + " " + _RoomId + " " + _NextTurn);
         SC_MultiPlayer_PieceLogic.playersInteractable = true;
         SC_MultiPlayer_Globals.Instance.unityObjects["TXT_WaitingStart"].SetActive(false);
+
+        if (currentTurn == SC_DefiendVariables.Turn.blueTurn)
+        {
+            print("OnGameStarted -> BlueTurn");
+            InitializeEnemyPieces();
+            isMyTurn = !isMyTurn;
+            //currentTurn = SC_DefiendVariables.Turn.RedTurn;
+
+        }
         //SC_MenuView.Instance.SetInfoText("OnGameStarted " + _Sender + " " + _RoomId + " " + _NextTurn);
         //SC_MenuGlobals.Instance.unityObjects["Screen_Menu"].SetActive(false);
         //SC_MenuGlobals.Instance.unityObjects["Screen_Game"].SetActive(true);
     }
 
+    private void InitializeEnemyPieces()
+    {
+
+        print("Send First GamePieces placement");
+        Dictionary<string, object> enemyStrength = new Dictionary<string, object>();
+
+        for (int i = 0; i < 4; i++)
+            for (int j = 0; j < 10; j++)
+                enemyStrength.Add(i + "-" + j, gameBoard[i][j].piece.pieceStrengh);
+
+        string _jsonToSend = MiniJSON.Json.Serialize(enemyStrength);
+        Debug.Log(_jsonToSend);
+        WarpClient.GetInstance().sendMove(_jsonToSend);
+        boolSendMyData = true;
+        print("boolSendMyData = true");
+    }
+
     #endregion
 
+    public void Restart()
+    {
+        doneRestarting = false;
+        print("Restart from SC_Multiplayer_Logic");
+        for (int i = 0; i < 10; i++)
+            for (int j = 0; j < 10; j++) {
+                gameBoard[i][j].tileStatus = SC_DefiendVariables.TileStatus.Empty;
+                gameBoard[i][j].piece = null;
+                    }
+        SC_MultiPlayer_Globals.GamePhase = SC_MultiPlayer_Globals.GameSituation.setPieces;
+
+    }
 }
 
-/*
- 
-	public void DoSlotLogic(int _Index)
-	{
-		if (currentTurn == SC_DefiendVariables.Turn.blueTurn) 
-		{
-			Debug.Log ("DoSlotLogic " + _Index);
-			if (gameStatus [_Index] == GameEnums.SlotState.Empty)
-			{
-				isMyTurn = false;
-				Dictionary<string,object> _toSend = new Dictionary<string, object> ();
-				_toSend.Add ("UserName", SC_MenuGlobals.userName);
-				_toSend.Add ("Data",_Index);
-				_toSend.Add ("State",playerState);
-
-				string _jsonToSend = MiniJSON.Json.Serialize (_toSend);
-				Debug.Log (_jsonToSend);
-				WarpClient.GetInstance ().sendMove (_jsonToSend);
-				SubmitLogic (_Index);
-			}
-		}
-	}
-    }
-     /*
-
-    	public void OnMoveCompleted(MoveEvent _Move)
-	{
-		Debug.Log ("OnMoveCompleted " + _Move.getMoveData() + " " + _Move.getNextTurn() + " " + _Move.getSender());
-		if (_Move.getSender () != SC_MenuGlobals.userName && _Move.getMoveData() != null)
-		{
-			Dictionary<string,object> _recievedData = MiniJSON.Json.Deserialize (_Move.getMoveData()) as Dictionary<string,object>;
-			if (_recievedData != null) 
-			{
-				int _index = int.Parse (_recievedData ["Data"].ToString());
-				SubmitLogic (_index);
-			}
-		}
-
-		if(_Move.getNextTurn() == SC_MenuGlobals.userName)
-			isMyTurn = true;
-		else isMyTurn = false;
-	}
-
-
-     
-     */

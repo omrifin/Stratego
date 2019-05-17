@@ -6,8 +6,8 @@ using UnityEngine;
 public class SC_MultiPlayer_Globals : MonoBehaviour
 {
 
-    public static string apiKey = "f2aa1a1802060a9fab3409bad89b28f260e33d65576f95ede6532da207f3fd14";
-    public static string secretApiKey= "e4f7b58a65a60ab54f82fa223b2648817ffdc85de063f38776ea3690313e09d2";
+    public static string apiKey = "e48ee9604ac1ccbc1e9be6d47005df21ccf90e644eadf8016ebc14f8f60f0f08";
+    public static string secretApiKey= "f699f6a3187fb4bc5160e00d1d13df1111812e325f1c5ba0f5992c341e924e2a";
 
     public int numOfDeployedBluePieces;
     public Dictionary<string, GameObject> unityObjects;

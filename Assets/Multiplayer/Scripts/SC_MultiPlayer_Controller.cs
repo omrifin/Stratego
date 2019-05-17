@@ -13,6 +13,11 @@ public class SC_MultiPlayer_Controller : MonoBehaviour
     private static SC_MultiPlayer_Controller instance;
     GameObject _menu;
     GameObject _resumeButton;
+    public  delegate void  RestartEvent();
+    public static event RestartEvent RestartHandler;
+
+
+
 
     public void UserPressedSC_MultiPlayer_Deck()
     {
@@ -69,11 +74,13 @@ public class SC_MultiPlayer_Controller : MonoBehaviour
     {
         SC_MultiPlayer_Globals.GamePhase = SC_MultiPlayer_Globals.GameSituation.Running;
         SC_MultiPlayer_View.Instance.StartButton.SetActive(false);
+        SC_MultiPlayer_Logic.Instance.doneRestarting = true;
 
     }
 
     public void UserPressedPiece(SC_MultiPlayer_PieceLogic SC_MultiPlayer_PieceLogic)
     {
+        print("piece.name= "+SC_MultiPlayer_PieceLogic.name);
         SC_MultiPlayer_Logic.Instance.UserPressedPiece(SC_MultiPlayer_PieceLogic);
     }
 
@@ -85,6 +92,7 @@ public class SC_MultiPlayer_Controller : MonoBehaviour
       
         bool findSlot = true;
         int _colRand, _rowRand;
+        int counter = 0;
         for (int i = 0; i < 40; i++)
         {
             SC_MultiPlayer_PieceLogic _tmpEnemy = blueTeam["Soldier (" + i + ")"].GetComponent<SC_MultiPlayer_PieceLogic>();
@@ -106,8 +114,9 @@ public class SC_MultiPlayer_Controller : MonoBehaviour
 
                 }
                 //break;
-
+                if (counter == 200) break;
             }
+            counter = 0;
             findSlot = true;
         }
     }
@@ -127,6 +136,7 @@ public class SC_MultiPlayer_Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            print("u pressed R");
             if (randomHasOccoured)
             {
                 for (int i = 0; i < 4; i++)
@@ -149,6 +159,7 @@ public class SC_MultiPlayer_Controller : MonoBehaviour
         {
             _menu.SetActive(true);
             _resumeButton.SetActive(true);
+           
 
         }
 
@@ -160,6 +171,10 @@ public class SC_MultiPlayer_Controller : MonoBehaviour
         {
             print("CurrentTurn= " + SC_MultiPlayer_Logic.currentTurn + " GamePhase= " + SC_MultiPlayer_Globals.GamePhase+" isMyTurn= "+SC_MultiPlayer_Logic.Instance.isMyTurn);
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SC_MultiPlayer_Logic.Instance.PrintGameBoard();
+        }
     
     }
     public void returnToGame()
@@ -170,25 +185,16 @@ public class SC_MultiPlayer_Controller : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        SC_MultiPlayer_Logic.Instance.LeaveRoom();
         SceneManager.LoadScene("Main Project", LoadSceneMode.Single);
     }
 
     public void Restart()
     {
-        SC_MultiPlayer_View.Instance.EndGamePanel.SetActive(false);
-        SC_MultiPlayer_Logic.instance.enemyArray.Clear();   //clean the enemy array
-        for (int j = 6; j < 10; j++)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                Destroy(SC_MultiPlayer_Logic.Instance.gameBoard[j][i].piece);
-                SC_MultiPlayer_Logic.Instance.gameBoard[j][i].tileStatus = SC_DefiendVariables.TileStatus.Empty;
-            }
+        print("U pressed Restart!");
+        SC_MultiPlayer_Controller.RestartHandler();
 
 
-        }
-        SC_MultiPlayer_Logic.instance.DeployEnemyPieces();
-        SC_MultiPlayer_Globals.GamePhase = SC_MultiPlayer_Globals.GameSituation.setPieces;
+
     }
-
 }

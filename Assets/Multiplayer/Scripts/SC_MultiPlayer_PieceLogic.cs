@@ -50,7 +50,7 @@ public class SC_MultiPlayer_PieceLogic : MonoBehaviour
 
     private void OnMouseDown()
     {
-        print("clicked me");
+        //print("clicked me");
         //if (SC_MultiPlayer_PieceLogic.playersInteractable == true)
         //{
             if ((SC_MultiPlayer_Logic.currentTurn == SC_DefiendVariables.Turn.blueTurn) || (SC_MultiPlayer_Globals.GamePhase == SC_MultiPlayer_Globals.GameSituation.setPieces))//&&(whoAmI == SC_DefiendVariables.whoAmI.Blue))
@@ -60,6 +60,11 @@ public class SC_MultiPlayer_PieceLogic : MonoBehaviour
                 else if (SC_MultiPlayer_Globals.GamePhase == SC_MultiPlayer_Globals.GameSituation.Running)
                     SC_MultiPlayer_Controller.Instance.UserWantsToFIght(this);
             }
+            else if(SC_MultiPlayer_Globals.GamePhase == SC_MultiPlayer_Globals.GameSituation.setPieces)
+        {
+            if (whoAmI == SC_DefiendVariables.whoAmI.Blue)
+                SC_MultiPlayer_Controller.Instance.UserPressedPiece(this);
+        }
             else print("cant touch me!");
        // }
         //else print("cant touch me!");

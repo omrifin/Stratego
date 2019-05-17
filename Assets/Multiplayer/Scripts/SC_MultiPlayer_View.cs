@@ -16,7 +16,12 @@ public class SC_MultiPlayer_View : MonoBehaviour
     public GameObject StartButton;
     public GameObject EndGamePanel;
     public Text EndGameText;
-
+    public Text CurrentTurnText;
+    GameObject Button_ResumeGame;
+    GameObject Button_RestartGame;
+    public GameObject WhosTurnSprite;
+    public GameObject RedSoldierSprite;
+    public GameObject BlueSoldierSprite;
     #region SingleTone
     public static SC_MultiPlayer_View Instance
     {
@@ -31,6 +36,15 @@ public class SC_MultiPlayer_View : MonoBehaviour
     #endregion
 
 
+    private void OnEnable()
+    {
+        SC_MultiPlayer_Controller.RestartHandler += Restart;
+    }
+    private void OnDisable()
+    {
+        SC_MultiPlayer_Controller.RestartHandler -= Restart;
+    }
+
     private void Awake()
     {
      
@@ -40,22 +54,45 @@ public class SC_MultiPlayer_View : MonoBehaviour
         init();
 
     }
+    private void Restart()
+    {
+        print("Restart from SC_MultiplayerView");
+        for(int i=0; i < 40; i++)
+        {
+            SC_MultiPlayer_Globals.Instance.unityObjects["Soldier (" + i + ")"].GetComponent<SC_MultiPlayer_PieceLogic>().goBack();
+        }
+        for (int i = 0; i < 40; i++)
+        {
+            SC_MultiPlayer_Globals.Instance.unityObjects["Enemy (" + i + ")"].GetComponent<SC_MultiPlayer_PieceLogic>().goBack();
+        }
+        EndGamePanel.SetActive(false);
+
+    }
 
 
 
 
     private void init()
     {
+        WhosTurnSprite= GameObject.Find("Who'sTurn");
         tile = SC_MultiPlayer_Globals.Instance.unityObjects["Grass1_Cus2"];
         //EndGameText = GameObject.Find("EndGameText").GetComponent<Text>();
         EndGameText = SC_MultiPlayer_Globals.Instance.unityObjects["EndGameText"].GetComponent<Text>();
         //tile = GameObject.Find("Grass1_Cus2");
         WaterTile = GameObject.Find("WaterTile");
         holder = GameObject.Find("TileHolder");
-        StartButton = GameObject.Find("StartButton");
-        EndGamePanel = GameObject.Find("Panel_EndGame");
+        StartButton = SC_MultiPlayer_Globals.Instance.unityObjects["StartButton"];
+        EndGamePanel = SC_MultiPlayer_Globals.Instance.unityObjects["Panel_EndGame"];
+        Button_ResumeGame = SC_MultiPlayer_Globals.Instance.unityObjects["Button_ResumeGame"];
+        if (Button_ResumeGame == null) print("problem finiding Button_ResumeGame!");
         if (SC_MultiPlayer_Globals.Instance.unityObjects["TXT_WaitingStart"] != null) SC_MultiPlayer_Globals.Instance.unityObjects["TXT_WaitingStart"].SetActive(false);
         //SC_MultiPlayer_Globals.Instance.unityObjects["Canvas"].SetActive(false);
+        Button_RestartGame = SC_MultiPlayer_Globals.Instance.unityObjects["Button_Restart"];
+        RedSoldierSprite = GameObject.Find("RedPieceSprite");
+        BlueSoldierSprite= GameObject.Find("BluePieceSprite");
+        WhosTurnSprite.SetActive(false);
+        CurrentTurnText = GameObject.Find("CurrentTurnText").GetComponent<Text>();
+        CurrentTurnText.gameObject.SetActive(false);
 
 
 
@@ -117,6 +154,13 @@ public class SC_MultiPlayer_View : MonoBehaviour
         //print("Trying color it back!");
     }
 
+    public void EndPanelGame()
+    {
+        EndGamePanel.SetActive(true);
+        Button_ResumeGame.SetActive(false);
+
+
+    }
     public void ShowValidPlacements(GameObject tile)
     {
 
@@ -128,5 +172,17 @@ public class SC_MultiPlayer_View : MonoBehaviour
     {
         defender.goBack();
         SC_MultiPlayer_Globals.Instance.unityObjects[defender.name].SetActive(false);
+    }
+
+    public void LeaveRoom()
+    {
+        EndGamePanel.SetActive(true);
+        //EndGameText.text = "Opponet left the game: you Win ";// + SC_DefiendVariables.bet + "$";
+        EndGameText.GetComponent<Text>().text = "Opponet left the game: you Win " + SC_DefiendVariables.bet["bet"].ToString()+"$" ;
+        //ttt.text = "Opponet left the game: you Win " + SC_DefiendVariables.bet + "$";
+        Button_ResumeGame.SetActive(false);
+        Button_RestartGame.SetActive(false);
+
+
     }
 }

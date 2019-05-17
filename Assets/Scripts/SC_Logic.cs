@@ -76,7 +76,7 @@ public class SC_Logic : MonoBehaviour
             || (Math.Abs(currentSelectedPiece.piece.currentTileRow - redPiece.currentTileRow) == 1) && (Math.Abs(currentSelectedPiece.piece.currentTileCol - redPiece.currentTileCol) == 0))
 
                 fight(tile);
-            SwitchTurn();
+           
         }
     }
 
@@ -162,25 +162,30 @@ public class SC_Logic : MonoBehaviour
 
     public void UserPressedPiece(SC_PieceLogic piece)
     {
-
-        SC_View.Instance.HideValidPlacements();
-        ResetValidCoordinates();
-        currentSelectedPiece.piece = piece;
-        //if (piece.onTile)
-        //    currentSelectedPiece.tile = GameBoard[piece.currentTileRow][piece.currentTileCol].tile;
-        if (SC_Globals.GamePhase == SC_Globals.GameSituation.setPieces)
         {
-            MarkValidTiles();
+            if (currentTurn == SC_DefiendVariables.Turn.blueTurn)
+            {
+                SC_View.Instance.HideValidPlacements();
+                ResetValidCoordinates();
+                currentSelectedPiece.piece = piece;
+               
+                if (SC_Globals.GamePhase == SC_Globals.GameSituation.setPieces)
+                {
+                    MarkValidTiles();
 
+                }
+
+                else if ((SC_Globals.GamePhase == SC_Globals.GameSituation.Running))//&& (piece.canMove == SC_DefiendVariables.Moveable.can))
+                {
+                    //if (piece.canMove == SC_DefiendVariables.Moveable.can)
+                    if (piece.whoAmI == SC_DefiendVariables.whoAmI.Blue)
+                        MarkValidTilesAtRunning();
+                    else if (piece.whoAmI == SC_DefiendVariables.whoAmI.Red)
+                        fight(GameBoard[piece.currentTileRow][piece.currentTileCol].tile.GetComponent<SC_TileLogic>());
+                }
+
+            }
         }
-
-        else if ((SC_Globals.GamePhase == SC_Globals.GameSituation.Running))//&& (piece.canMove == SC_DefiendVariables.Moveable.can))
-        {
-            //if (piece.canMove == SC_DefiendVariables.Moveable.can)
-            if (piece.whoAmI == SC_DefiendVariables.whoAmI.Blue)
-                MarkValidTilesAtRunning();
-        }
-
     }
 
     private void ResetValidCoordinates()
@@ -219,20 +224,25 @@ public class SC_Logic : MonoBehaviour
                         if (currentTurn == SC_DefiendVariables.Turn.blueTurn)
                             if ((validCoordinates[i].Row == tile.Row) && (validCoordinates[i].Col == tile.Col))
                             {
-                                //print("[Tile.row]= " + tile.Row + " [Tile.Col]= " + tile.Col);
+                              
                                 pieceHasBeenSelected = true;
                                 if (GameBoard[tile.Row][tile.Col].tileStatus == SC_DefiendVariables.TileStatus.Empty)
+                                {
                                     MovePieceWhenEmpty(tile);
+                                    SwitchTurn();
+                                   
+                                }
                                 else if (GameBoard[tile.Row][tile.Col].tileStatus == SC_DefiendVariables.TileStatus.RedOccupied)
                                 {
                                     fight(tile);
                                     ResetValidCoordinates();
+                                  
                                 }
 
-
+                                
                                 //SC_View.Instance.movePieceToNewLocation(currentSelectedPiece.piece, tile);
                                 ResetValidCoordinates();
-                                SwitchTurn();
+                              
                             }
                     }
                 }
@@ -354,6 +364,7 @@ public class SC_Logic : MonoBehaviour
             //spy captured your marshell
             KillPiece(defender, tile);
             MovePieceWhenDefeatEnemy(attack, tile);
+            SwitchTurn();
 
         }
         else if ((defender.pieceStrengh == SC_Globals.SoldierRank.bomb) && (attack.pieceStrengh == SC_Globals.SoldierRank.three))
@@ -361,6 +372,7 @@ public class SC_Logic : MonoBehaviour
             //defuse the bomb!
             KillPiece(defender, tile);
             MovePieceWhenDefeatEnemy(attack, tile);
+            SwitchTurn();
         }
 
         else if (defender.pieceStrengh == SC_Globals.SoldierRank.flag)
@@ -381,12 +393,14 @@ public class SC_Logic : MonoBehaviour
             //red steps on your bomb! he need to die!
             KillPiece(defender, tile);
             KillPiece(attack, tile);
+            SwitchTurn();
         }
         else if (defender.pieceStrengh == attack.pieceStrengh)
         {
             //same strength! they r both need to die
             KillPiece(defender, tile);
             KillPiece(attack, tile);
+            SwitchTurn();
         }
         else
         {
@@ -394,15 +408,23 @@ public class SC_Logic : MonoBehaviour
             {
                 KillPiece(defender, tile);
                 MovePieceWhenDefeatEnemy(attack, tile);
+                SwitchTurn();
             }
             else
             {
                 KillPiece(attack, tile);
                 MovePieceWhenDefeatEnemy(defender, tile);
+                SwitchTurn();
+                if (defender.whoAmI == SC_DefiendVariables.whoAmI.Blue)
+                    GameBoard[tile.Row][tile.Col].tileStatus = SC_DefiendVariables.TileStatus.BlueOccupied;
+
+                else
+                    GameBoard[tile.Row][tile.Col].tileStatus = SC_DefiendVariables.TileStatus.RedOccupied;
+
             }
         }
 
-        SwitchTurn();
+       
         currentSelectedPiece.piece = null;
         SC_View.Instance.HideValidPlacements();
 
@@ -476,8 +498,10 @@ public class SC_Logic : MonoBehaviour
         attack.currentTileRow = tile.Row;
         attack.currentTileCol = tile.Col;
         GameBoard[tile.Row][tile.Col].piece = attack;
+        if (attack.whoAmI == SC_DefiendVariables.whoAmI.Blue)
+            SC_View.Instance.movePieceToNewLocation(attack, tile);
 
-        
+
         if (attack.whoAmI == SC_DefiendVariables.whoAmI.Red)
         {
             SC_View.Instance.movePieceToNewLocation(attack, tile);
